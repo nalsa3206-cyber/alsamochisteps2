@@ -4,6 +4,7 @@ import {
   ArrowUpRight, ArrowDownRight, Edit3, Filter, PackageCheck, Eye, EyeOff
 } from 'lucide-react';
 import { Product, StockMutation } from '../../types';
+import { getAssetUrl, ASSETS } from '../../utils/assetHelper';
 
 interface InventoryMutationsViewProps {
   products: Product[];
@@ -300,9 +301,12 @@ export const InventoryMutationsView: React.FC<InventoryMutationsViewProps> = ({
                       <td className="py-3 px-4">
                         <div className="flex items-center gap-3">
                           <img
-                            src={p.image}
+                            src={getAssetUrl(p.image)}
                             alt={p.name}
                             className="w-12 h-12 object-cover rounded-xl border border-[#E5DDD2] shrink-0"
+                            onError={(e) => {
+                              (e.currentTarget as HTMLImageElement).src = ASSETS.balletMaryJane;
+                            }}
                           />
                           <div>
                             <div className="font-bold text-[#2D2A26]">{p.name}</div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, ShieldCheck, Heart, Sparkles, Ruler } from 'lucide-react';
+import { ASSETS } from '../utils/assetHelper';
 
 interface HeroProps {
   onExploreClick: () => void;
@@ -24,9 +25,12 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick, onCategoryClick, onO
             {/* Tagline with Logo Pill */}
             <div className="inline-flex items-center gap-2.5 self-start bg-[#FCEAE9] border border-[#F3D1CF] px-3.5 py-1.5 rounded-full">
               <img 
-                src="/src/assets/images/mochisteps_brand_logo_1791899999020.jpg" 
+                src={ASSETS.logo} 
                 alt="Logo Mochi Steps" 
                 className="w-5 h-5 rounded-full object-cover"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = ASSETS.logo;
+                }}
               />
               <span 
                 className="text-xs font-semibold text-[#8C4F56] tracking-wide font-brand font-poppins"
@@ -120,10 +124,13 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick, onCategoryClick, onO
           >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-[#E0D7CC] bg-[#F5EFE8]">
               <img
-                src="/src/assets/images/hero_flatshoes_lifestyle_1791897849729.jpg"
+                src={ASSETS.hero}
                 alt="Koleksi Flatshoes Mochi Steps"
                 className="w-full h-[380px] sm:h-[460px] object-cover hover:scale-105 transition-transform duration-700"
                 loading="eager"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = ASSETS.hero;
+                }}
               />
 
               {/* Overlay Badge */}

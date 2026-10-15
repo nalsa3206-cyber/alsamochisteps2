@@ -15,6 +15,7 @@ import { InventoryMutationsView } from './admin/InventoryMutationsView';
 import { ProductFormModal } from './admin/ProductFormModal';
 import { RecordMutationModal } from './admin/RecordMutationModal';
 import { PricingProfitView } from './admin/PricingProfitView';
+import { ASSETS, getAssetUrl } from '../utils/assetHelper';
 
 interface AdminPanelProps {
   isOpen: boolean;
@@ -463,9 +464,12 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
           {/* Brand & Store Info */}
           <div className="flex items-center gap-3.5">
             <img 
-              src="/src/assets/images/mochisteps_brand_logo_1791899999020.jpg" 
+              src={ASSETS.logo} 
               alt="MochiSteps" 
               className="w-10 h-10 rounded-xl object-cover border border-white/20 bg-white shrink-0 shadow-xs"
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).src = ASSETS.logo;
+              }}
             />
             <div>
               <div className="flex items-center gap-2">
@@ -991,9 +995,12 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                             <td className="py-3 px-4">
                               <div className="flex items-center gap-3">
                                 <img
-                                  src={p.image}
+                                  src={getAssetUrl(p.image)}
                                   alt={p.name}
                                   className="w-12 h-12 object-cover rounded-xl border border-[#E5DDD2] shrink-0"
+                                  onError={(e) => {
+                                    (e.currentTarget as HTMLImageElement).src = ASSETS.balletMaryJane;
+                                  }}
                                 />
                                 <div>
                                   <div className="font-bold text-[#2D2A26]">{p.name}</div>
@@ -1696,7 +1703,14 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         <div key={p.productId} className="py-3 flex items-center justify-between text-xs">
                           <div className="flex items-center gap-3">
                             <span className="font-bold text-[#8C8072] w-4">{idx + 1}.</span>
-                            <img src={p.image} alt={p.name} className="w-11 h-11 object-cover rounded-xl border border-[#E5DDD2]" />
+                            <img 
+                              src={getAssetUrl(p.image)} 
+                              alt={p.name} 
+                              className="w-11 h-11 object-cover rounded-xl border border-[#E5DDD2]" 
+                              onError={(e) => {
+                                (e.currentTarget as HTMLImageElement).src = ASSETS.balletMaryJane;
+                              }}
+                            />
                             <div>
                               <div className="font-bold text-[#2D2A26]">{p.name}</div>
                               <div className="text-[11px] text-[#7A6E60]">{p.unitsSold} pasang terjual</div>
@@ -1864,7 +1878,14 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     {selectedOrder.items.map((item, i) => (
                       <div key={i} className="p-3 flex items-center justify-between text-xs">
                         <div className="flex items-center gap-2.5">
-                          <img src={item.image} alt={item.name} className="w-10 h-10 object-cover rounded-lg border border-[#DDD3C7]" />
+                          <img 
+                            src={getAssetUrl(item.image)} 
+                            alt={item.name} 
+                            className="w-10 h-10 object-cover rounded-lg border border-[#DDD3C7]" 
+                            onError={(e) => {
+                              (e.currentTarget as HTMLImageElement).src = ASSETS.balletMaryJane;
+                            }}
+                          />
                           <div>
                             <div className="font-bold text-[#2D2A26]">{item.name}</div>
                             <div className="text-[11px] text-[#7A6E60]">Size: {item.selectedSize} · Warna: {item.selectedColor} · Qty: {item.quantity}</div>

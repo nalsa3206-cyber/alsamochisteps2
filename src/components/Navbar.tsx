@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShoppingBag, Truck, ShieldCheck, Heart } from 'lucide-react';
+import { ASSETS } from '../utils/assetHelper';
 
 interface NavbarProps {
   cartCount: number;
@@ -61,9 +62,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden shadow-xs border border-[#E8DACB] shrink-0 bg-[#FCEAE9]">
                 <img 
-                  src="/src/assets/images/mochisteps_brand_logo_1791899999020.jpg" 
+                  src={ASSETS.logo} 
                   alt="Mochi Steps Logo" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).src = ASSETS.logo;
+                  }}
                 />
               </div>
 

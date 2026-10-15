@@ -6,6 +6,7 @@ import {
 import { Product } from '../../types';
 import { db } from '../../firebase';
 import { doc, updateDoc } from 'firebase/firestore';
+import { getAssetUrl, ASSETS } from '../../utils/assetHelper';
 
 interface PricingProfitViewProps {
   products: Product[];
@@ -442,9 +443,12 @@ export const PricingProfitView: React.FC<PricingProfitViewProps> = ({
                   <td className="py-3 px-4">
                     <div className="flex items-center gap-3">
                       <img
-                        src={item.image}
+                        src={getAssetUrl(item.image)}
                         alt={item.name}
                         className="w-11 h-11 object-cover rounded-xl border border-[#E5DDD2] shrink-0"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).src = ASSETS.balletMaryJane;
+                        }}
                       />
                       <div>
                         <div className="font-bold text-[#2D2A26]">{item.name}</div>

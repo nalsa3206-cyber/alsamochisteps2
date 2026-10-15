@@ -1,6 +1,7 @@
 import React from 'react';
 import { Star, Eye, ShoppingCart } from 'lucide-react';
 import { Product } from '../types';
+import { getAssetUrl, ASSETS } from '../utils/assetHelper';
 
 interface ProductCardProps {
   product: Product;
@@ -26,11 +27,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Image Container */}
       <div className="relative aspect-[4/3] bg-[#F7F4EF] overflow-hidden">
         <img
-          src={product.image}
+          src={getAssetUrl(product.image)}
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
           referrerPolicy="no-referrer"
+          onError={(e) => {
+            (e.currentTarget as HTMLImageElement).src = ASSETS.balletMaryJane;
+          }}
         />
 
         {/* Stock Badge / Tag */}

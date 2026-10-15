@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapPin, Phone, Mail, ShieldCheck, Heart, Sparkles, Ruler, Shield, Database } from 'lucide-react';
+import { ASSETS } from '../utils/assetHelper';
 
 interface FooterProps {
   onOpenAdmin: () => void;
@@ -29,9 +30,12 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
               <img 
-                src="/src/assets/images/mochisteps_brand_logo_1791899999020.jpg" 
+                src={ASSETS.logo} 
                 alt="Mochi Steps Logo" 
                 className="w-12 h-12 rounded-xl object-cover border border-white/20 bg-white"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = ASSETS.logo;
+                }}
               />
               <div>
                 <span 

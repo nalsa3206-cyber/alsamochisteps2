@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { Order } from '../types';
 import { api } from '../api';
+import { getAssetUrl, ASSETS } from '../utils/assetHelper';
 
 interface OrderTrackingModalProps {
   isOpen: boolean;
@@ -379,9 +380,12 @@ export const OrderTrackingModal: React.FC<OrderTrackingModalProps> = ({
                     <div key={idx} className="p-3 flex items-center justify-between text-xs hover:bg-[#FAF8F5]">
                       <div className="flex items-center gap-3">
                         <img 
-                          src={item.image} 
+                          src={getAssetUrl(item.image)} 
                           alt={item.name} 
                           className="w-12 h-12 rounded-lg object-cover border border-[#E5DDD2] shrink-0" 
+                          onError={(e) => {
+                            (e.currentTarget as HTMLImageElement).src = ASSETS.balletMaryJane;
+                          }}
                         />
                         <div>
                           <div className="font-bold text-[#2D2A26]">{item.name}</div>

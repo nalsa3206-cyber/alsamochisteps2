@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Star, Check, ShieldCheck, RefreshCw, ShoppingBag } from 'lucide-react';
 import { Product } from '../types';
+import { getAssetUrl, ASSETS } from '../utils/assetHelper';
 
 interface ProductDetailModalProps {
   product: Product | null;
@@ -56,9 +57,12 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <div className="bg-[#FAF7F2] p-6 flex flex-col justify-center items-center border-b md:border-b-0 md:border-r border-[#EAE3DA]">
             <div className="w-full aspect-[4/3] rounded-xl overflow-hidden shadow-md bg-white">
               <img
-                src={product.image}
+                src={getAssetUrl(product.image)}
                 alt={product.name}
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = ASSETS.balletMaryJane;
+                }}
               />
             </div>
             

@@ -8,6 +8,7 @@ import {
 import { jsPDF } from 'jspdf';
 import { Product, POSTransaction, POSPaymentMethod, POSTransactionItem } from '../../types';
 import { api } from '../../api';
+import { getAssetUrl, ASSETS } from '../../utils/assetHelper';
 
 interface POSKasirViewProps {
   products: Product[];
@@ -683,10 +684,13 @@ export const POSKasirView: React.FC<POSKasirViewProps> = ({
                       <div className="p-3 pb-0">
                         <div className="relative h-36 sm:h-40 w-full rounded-xl overflow-hidden bg-[#FAF7F2] shrink-0 border border-[#F0EAE1]">
                           <img
-                            src={product.image}
+                            src={getAssetUrl(product.image)}
                             alt={product.name}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             loading="lazy"
+                            onError={(e) => {
+                              (e.currentTarget as HTMLImageElement).src = ASSETS.balletMaryJane;
+                            }}
                           />
                           
                           {/* Badge Stok Total */}
@@ -899,9 +903,12 @@ export const POSKasirView: React.FC<POSKasirViewProps> = ({
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
                       <img
-                        src={item.product.image}
+                        src={getAssetUrl(item.product.image)}
                         alt={item.product.name}
                         className="w-10 h-10 object-cover rounded-lg shrink-0 border border-[#DDD3C7]"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).src = ASSETS.balletMaryJane;
+                        }}
                       />
                       <div className="min-w-0">
                         <h5 className="font-bold text-[#2D2A26] truncate">

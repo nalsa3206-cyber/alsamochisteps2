@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Trash2, ShoppingBag, ArrowRight, Tag, ShieldCheck } from 'lucide-react';
 import { CartItem } from '../types';
+import { getAssetUrl, ASSETS } from '../utils/assetHelper';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -102,9 +103,12 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 {/* Thumbnail */}
                 <div className="w-20 h-20 bg-white rounded-lg overflow-hidden shrink-0 border border-[#E5DDD2]">
                   <img
-                    src={item.image}
+                    src={getAssetUrl(item.image)}
                     alt={item.name}
                     className="w-full h-full object-cover"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = ASSETS.balletMaryJane;
+                    }}
                   />
                 </div>
 

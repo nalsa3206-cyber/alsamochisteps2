@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { api } from '../api';
 import { Product, Order, Customer } from '../types';
+import { getAssetUrl, ASSETS } from '../utils/assetHelper';
 
 interface DatabaseInspectorModalProps {
   isOpen: boolean;
@@ -331,7 +332,14 @@ export const DatabaseInspectorModal: React.FC<DatabaseInspectorModalProps> = ({
                       <tr key={p.id} className="hover:bg-[#FAF7F2] transition-colors">
                         <td className="py-2.5 px-3 font-mono text-[11px] text-[#8C4F56] font-semibold">{p.id}</td>
                         <td className="py-2.5 px-3">
-                          <img src={p.image} alt={p.name} className="w-9 h-9 rounded-md object-cover border border-[#DFD4C5]" />
+                          <img 
+                            src={getAssetUrl(p.image)} 
+                            alt={p.name} 
+                            className="w-9 h-9 rounded-md object-cover border border-[#DFD4C5]" 
+                            onError={(e) => {
+                              (e.currentTarget as HTMLImageElement).src = ASSETS.balletMaryJane;
+                            }}
+                          />
                         </td>
                         <td className="py-2.5 px-3 font-semibold text-[#24211D] max-w-[200px] truncate">{p.name}</td>
                         <td className="py-2.5 px-3">

@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { CartItem, Order, PaymentMethod } from '../types';
 import { api } from '../api';
+import { ASSETS, getAssetUrl } from '../utils/assetHelper';
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -258,9 +259,12 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
         <div className="px-5 sm:px-6 py-4 border-b border-[#EAE3DA] flex items-center justify-between bg-[#FAF8F5]">
           <div className="flex items-center gap-3">
             <img 
-              src="/src/assets/images/mochisteps_brand_logo_1791899999020.jpg" 
+              src={ASSETS.logo} 
               alt="Mochi Steps Logo" 
               className="w-10 h-10 rounded-lg object-cover border border-[#E8DACB]"
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).src = ASSETS.logo;
+              }}
             />
             <div>
               <h2 className="font-brand font-bold text-base text-[#24211D]">
