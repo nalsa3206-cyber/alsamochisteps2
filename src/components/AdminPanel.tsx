@@ -565,19 +565,6 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
             <span>Dashboard</span>
           </button>
 
-          {/* Menu POS Kasir Toko */}
-          <button
-            onClick={() => setActiveTab('pos')}
-            className={`py-2 px-3.5 rounded-xl text-xs font-bold flex items-center gap-2 transition-all whitespace-nowrap cursor-pointer ${
-              activeTab === 'pos'
-                ? 'bg-emerald-700 text-white shadow-xs'
-                : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200'
-            }`}
-          >
-            <CreditCard className="w-4 h-4 text-emerald-600" />
-            <span>POS Kasir</span>
-          </button>
-
           {/* Menu 2: Data Produk & Stok */}
           <button
             onClick={() => setActiveTab('products')}
@@ -706,6 +693,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
               currentUser={currentUser}
               onRefreshData={loadAllData}
               posTransactions={posTransactions}
+              onClose={() => setActiveTab('dashboard')}
             />
           )}
 
